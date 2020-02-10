@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminLoginController extends Controller
 {
-    public function login() {
+    public function login(Request $request) {
 
         // Check if a user with the specified email exists
         $user = Admin::where('email',request('email'))->first();
@@ -50,36 +50,9 @@ class AdminLoginController extends Controller
             ], 500);
         }
 
-        $data = [
-            'grant_type' => 'password',
-            'client_id' => $client->id,
-            'client_secret' => $client->secret,
-            'username' => request('username'),
-            'password' => request('password'),
-            'scope'    => 'admin-only'
-        ];
+        $token = $user->createToken('Laravel Password Grant Client', ['admin-only'])->accessToken;
 
-        $request = Request::create('/oauth/token', 'POST', $data);
-        $response = app()->handle($request);
-
-        // Check if the request was successful
-        if ($response->getStatusCode() != 200) {
-            return response()->json([
-                'errors' =>[ 
-                	'invalid_user' => 'Wrong credentials',
-                ],
-                'status' => 422
-            ], 422);
-        }
-        // Get the data from the response
-        $data = json_decode($response->getContent());
-
-        // Format the final response in a desirable format
-        return response()->json([
-            'token' => $data->access_token,
-            'user' => $user->getAttributes(),
-            'status' => 200
-        ]);
+        return response()->json(['access_token' => $token]);
     }
 
 

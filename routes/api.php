@@ -17,10 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/admin/login', 'Admin/Auth/AdminLoginController@Login');
+Route::post('/admin/login', 'Admin\Auth\AdminLoginController@Login');
 
-Route::middleware('auth:api')->group(function (){
-	Route::post('/admin/logout','Admin/Auth/AdminLoginController@logout');
-	Route::get('/admin/','Admin/Auth/AdminLoginController@getAdmin');
+Route::middleware(['auth:admin-api','scopes:admin-only'])->group(function (){
+	Route::post('/admin/logout','Admin\Auth\AdminLoginController@logout');
+	Route::get('/admin/','Admin\Auth\AdminLoginController@getAdmin');
 });
 

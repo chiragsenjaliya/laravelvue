@@ -1,7 +1,6 @@
-import VueRouter from 'vue-router';
-
-
-import {store} from '../vuex/store'
+import Vue from 'vue';
+import VueRouter from 'vue-router'
+import store from './../store'
 
 Vue.use(VueRouter);
 
@@ -21,12 +20,12 @@ const ifAuthenticated = (to, from, next) => {
     next('/')
 }
 
-import AdminLayout from './../components/admins/layout/layout';
-import Dashboard from './../components/admin/dashboard/dashboard'; 
-import Login from './../components/admin/auth/login';   
+import AdminLayout from '../components/layout/layout';
+import Dashboard from '../components/dashboard/dashboard'; 
+import Login from '../components/auth/login';   
 
 
-let adminRoutes = [
+let routes = [
     {
         path: '/',
         name: 'login',
@@ -35,7 +34,7 @@ let adminRoutes = [
     },
     {
         path: '/',
-        name: 'layout',
+        name: 'index',
         component: AdminLayout,
         beforeEnter: ifAuthenticated,
         children: [
@@ -50,8 +49,7 @@ let adminRoutes = [
 
 
 export default new VueRouter({
-    base: '/admin/',
     mode: 'history',
-    adminRoutes,
-    linkActiveClass: 'active'
-});
+    base: '/admin',
+    routes
+})

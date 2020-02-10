@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import admin from './modules/admin'
-import auth from './modules/auth'
+import admin from './admin'
+import auth from './auth'
 
 Vue.use(Vuex);
 
-export const store = new Vuex.Store({
+export default new Vuex.Store({
     modules: {
         admin,
         auth,

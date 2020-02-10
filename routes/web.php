@@ -10,15 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/admin/{any?}',  function(){;
+	return view('admin');
+})->where(['any' => '.*']);
 
 Route::get('/', function () {
-    return view('home');
+    return redirect('/admin/');
 });
 
-Route::get('/admin/{any?}',  function(){
-	dd('tt');
-	return view('admin');
-})->where('any', '*');
+
 
 Auth::routes();
 

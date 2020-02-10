@@ -27,6 +27,11 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Passport::routes();
+
+        Passport::tokensCan([
+            'user-only' => 'user-only',
+            'admin-only' => 'admin-only',            
+        ]);
         //
     }
 }

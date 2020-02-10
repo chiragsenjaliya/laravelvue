@@ -11,10 +11,10 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Scripts -->
-        <script src="{{ asset('js/admin.js') }}" defer></script>
+        <script src="{{ mix('js/admin/app.js') }}" defer></script>
 
         <!-- Styles -->
-        <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/admin/app.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="app">
