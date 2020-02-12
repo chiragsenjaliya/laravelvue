@@ -20,13 +20,13 @@ const ifAuthenticated = (to, from, next) => {
     next('/')
 }
 
-import AdminLayout from '../components/layout/layout';
-import Dashboard from '../components/dashboard/dashboard'; 
-import Login from '../components/auth/login';   
+import AdminLayout from './../components/layout/layout';
+import Dashboard from './../components/dashboard/dashboard';
+import Login from './../components/auth/login';
+import RolesPermissions from './../components/role-permission/index.vue';
 
 
-let routes = [
-    {
+let routes = [{
         path: '/',
         name: 'login',
         component: Login,
@@ -37,11 +37,15 @@ let routes = [
         name: 'index',
         component: AdminLayout,
         beforeEnter: ifAuthenticated,
-        children: [
-            {
+        children: [{
                 path: 'dashboard',
                 name: 'dashboard',
                 component: Dashboard
+            },
+            {
+                path: 'roles-permissions',
+                name: 'roles-permissions',
+                component: RolesPermissions
             }
         ]
     },

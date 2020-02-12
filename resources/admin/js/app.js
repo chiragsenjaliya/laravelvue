@@ -11,6 +11,7 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router'
 import Notifications from 'vue-notification'
 
+
 Vue.use(VueRouter);
 Vue.use(Notifications);
 
@@ -29,6 +30,7 @@ import router from './router'
 import store  from './store';
 
 Vue.component('navbar-component', require('./components/layout/navbar.vue').default);
+Vue.component('section-title', require('./components/elements/title.vue').default);
 Vue.component('sidebar-component', require('./components/layout/sidebar.vue').default);
 Vue.component('footer-component', require('./components/layout/footer.vue').default);
 /**

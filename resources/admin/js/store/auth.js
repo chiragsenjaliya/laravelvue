@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import Errors from './../modules/errors';
+import Errors from '../modules/errors';
 
 const state = {
     access_token: Cookies.get('access_token') || '',
